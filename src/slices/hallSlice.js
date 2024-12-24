@@ -61,17 +61,6 @@ export const updateHall = createAsyncThunk(
 );
 
 
-// export const addHall = createAsyncThunk(
-//   'halls/addHall',
-//   async ({ hallData, imageFile }, { rejectWithValue }) => {
-//     try {
-//       const response = await AddHall(hallData, imageFile); // קריאה לפונקציית ה-API
-//       return response;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const addHallWithImage = createAsyncThunk(
   'halls/addHallWithImage',
@@ -99,26 +88,7 @@ export const CitiesInIsrael = createAsyncThunk(
 );
 
 
-// export const filterFlowers=createAsyncThunk('flowers/filterFlowers',async(filters)=>{
-//   try{
-//     const filterData=await FilterFlowers(filters);
-//     return filterData;
-//   }catch(error){
-//     throw new Error(error.message);
-//   }
-// })
 
-// export const contactDesigner = createAsyncThunk(
-//   "flowers/contactDesigner",
-//   async ({ designerId, eventType, eventDate, eventLocation }) => {
-//     try {
-//       const response = await ContactDesigner(designerId, eventType, eventDate, eventLocation);
-//       return response.message;
-//     } catch (error) {
-//       throw new Error(error.message);
-//     }
-//   }
-// );
 
 
 const hallsSlice = createSlice({
@@ -195,40 +165,7 @@ state.halls = state.halls.map((h) =>
         state.error = action.error.message;
       });
 
-    //   .addCase(filterFlowers.pending,(state)=>{
-    //     state.loading=true;
-    //   })
-    //   .addCase(filterFlowers.fulfilled,(state,action)=>{
-    //     state.flowers=action.payload;
-    //     state.loading=false;
-    //   })
-    //   .addCase(filterFlowers.rejected,(state,action)=>{
-    //     state.error=action.error.message;
-    //     state.loading=false;
-    //   })
-    //   .addCase(contactDesigner.pending,(state)=>{
-    //     state.loading=true;
-    //   })
-    //   .addCase(contactDesigner.fulfilled,(state,action)=>{
-    //     state.flowers=action.payload;
-    //     state.loading=false;
-    //   })
-    //   .addCase(contactDesigner.rejected,(state,action)=>{
-    //     state.error=action.error.message;
-    //     state.loading=false;
-    //   })
 
-    // .addCase(uploadHall.pending, (state) => {
-    //   state.loading = true;
-    // })
-    // .addCase(uploadHall.fulfilled, (state, action) => {
-    //   state.halls.push(action.payload);
-    //   state.loading = false;
-    // })
-    // .addCase(uploadHall.rejected, (state, action) => {
-    //   state.error = action.error.message;
-    //   state.loading = false;
-    // })
 
   },
 });

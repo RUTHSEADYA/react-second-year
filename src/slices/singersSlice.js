@@ -21,14 +21,7 @@ throw new Error(error.message) ;   }
 
 })
 
-// export const addSinger=createAsyncThunk("producer/addProducer",async(singer)=>{
-//     try{
-//    const addData=await AddSinger(singer);
-//    return addData;
-//     }catch(error){
-//         throw new Error(error.message);
-//     }
-// })
+
 
 export const addSingerWithImage = createAsyncThunk(
     'singer/addSingerWithImage',

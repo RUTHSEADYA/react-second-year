@@ -4,7 +4,6 @@
 
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {AddRecommendFlowers, DeleteRecommendFlower, GetRecommendFlowers } from '../services/recommandFlowersService';
 import { AddRecommendCatering, DeleteRecommendCatering, GetRecommendCatring } from '../services/recommendCateringService';
 
 const initialState = {
@@ -62,7 +61,6 @@ const cateringRecommendationsSlice = createSlice({
       builder
       .addCase(getRecommendCatring.fulfilled, (state, action) => {
         const { cateringId, recommendations } = action.payload;
-        //console.log("Saving recommendations in Redux:", { cateringId, recommendations }); // הדפסה לבדיקה
         state.recommendations[cateringId] = recommendations;
         state.loading = false;
       })

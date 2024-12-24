@@ -61,7 +61,6 @@ const flowerRecommendationsSlice = createSlice({
       builder
       .addCase(getRecommendFlowers.fulfilled, (state, action) => {
         const { flowerId, recommendations } = action.payload;
-        //console.log("Saving recommendations in Redux:", { flowerId, recommendations }); // הדפסה לבדיקה
         state.recommendations[flowerId] = recommendations;
         state.loading = false;
       })

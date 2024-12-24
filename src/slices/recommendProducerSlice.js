@@ -60,7 +60,6 @@ const recommendProducerSlice=createSlice({
         builder
         .addCase(getRecommendProducer.fulfilled,(state,action)=>{
         const {producerId,recommendations} =action.payload;
-        //console.log("Saving recommendations in Redux:", { producerId, recommendations }); // הדפסה לבדיקה
         state.recommendations[producerId]=recommendations;
         state.loading=false;
          })

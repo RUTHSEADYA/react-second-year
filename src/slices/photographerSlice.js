@@ -19,15 +19,7 @@ export const getPhotographers = createAsyncThunk('photographers/getphotographers
   }
 });
 
-// export const addHall = createAsyncThunk('halls/addFlowers', async (hall) => {
-//   try {
-//     const addData = await AddHall(hall);
-//     return addData;
-//   }
-//   catch (error) {
-//     throw new Error(error.message);
-//   }
-// });
+
 
 export const deletePhotographer = createAsyncThunk('photographers/deletephotographers', async (id) => {
   try {

@@ -19,15 +19,7 @@ export const getFlower = createAsyncThunk('flowers/getFlower', async () => {
   }
 });
 
-// export const addFlower = createAsyncThunk('flowers/addFlowers', async (flower) => {
-//   try {
-//     const addData = await AddFlower(flower);
-//     return addData;
-//   }
-//   catch (error) {
-//     throw new Error(error.message);
-//   }
-// });
+
 
 export const addFlowerWithImage = createAsyncThunk(
   'flower/addFlowerWithImage',
@@ -52,14 +44,7 @@ export const deleteFlower = createAsyncThunk('flowers/deleteFlowers', async (id)
   }
 })
 
-// export const updateFlower=createAsyncThunk('flowers/updateFlower',async({flower,id})=>{
-//   try{
-//     const updateData=await UpdateFlower(flower,id);
-//     return {id,flower:updateData};
-//   }catch(error){
-//     throw new Error(error.message);
-//   }
-// })
+
 export const updateFlower = createAsyncThunk(
   "flower/flowerSinger",
   async ({ flowerData, imageFile, id }) => {

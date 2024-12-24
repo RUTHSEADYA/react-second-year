@@ -45,7 +45,6 @@ export default function SingerDetails() {
   const selectedSinger = singers.find((singer) => singer.id === parseInt(id));
   const singerRecommend = recommendations?.[id] || [];
   const user = useSelector((state) => state.user.currentUser);
-  console.log('Selected Singer Image URL:', selectedSinger?.imageUrl);
   
   useEffect(() => {
     if (singerRecommend.length > 0) {
@@ -138,21 +137,6 @@ export default function SingerDetails() {
     }}
   />
 
-{/* <Box
-  sx={{
-    width: 200,
-    height: 200,
-    img: selectedSinger?.imageUrl ? `url(${selectedSinger.imageUrl})` : `url('src/photo/blog-8.jpg')`,
-    backgroundSize: 'contain',
-    backgroundPosition: 'center',
-    borderRadius: '50%',
-    position: 'absolute',
-    top: '20%',
-    left: '10%',
-    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-    border: '3px solid white',
-  }} */}
-{/* /> */}
 
 
   <Box sx={{ marginLeft: '200px' }}> {/* הסטת התוכן מימין לתמונה */}

@@ -93,10 +93,17 @@ const hallRecommendationsSlice = createSlice({
       .addCase(deleteRecommendHall.pending, (state) => {
         state.loading = true;
       })
+      // .addCase(deleteRecommendHall.fulfilled, (state, action) => {
+      //   state.recommendations = state.recommendations.filter(recommend => recommend.id !== action.payload); 
+      //          state.loading = false;
+      // })
       .addCase(deleteRecommendHall.fulfilled, (state, action) => {
-        state.recommendations = state.recommendations.filter(recommend => recommend.id !== action.payload); 
-               state.loading = false;
+        state.recommendations = state.recommendations.filter(
+          (recommendation) => recommendation.id !== action.payload
+        );
+        state.loading = false;
       })
+    
       .addCase(deleteRecommendHall.rejected, (state, action) => {
         state.error = action.error.message;
         state.loading = false;

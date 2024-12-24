@@ -4,7 +4,6 @@
 
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { AddRecommendHall, DeleteRecommendHall, GetRecommendHalls } from '../services/recommendHallsService';
 import { AddRecommendPhotographer, DeleteRecommendPhotographer, GetRecommendPhotographer } from '../services/recommendPhotographerService';
 
 const initialState = {
@@ -62,7 +61,6 @@ const photographerRecommendationsSlice = createSlice({
       builder
       .addCase(getRecommendPhotographer.fulfilled, (state, action) => {
         const { photographerId, recommendations } = action.payload;
-        //console.log("Saving recommendations in Redux:", { photographerId, recommendations }); // הדפסה לבדיקה
         state.recommendations[photographerId] = recommendations;
         state.loading = false;
       })

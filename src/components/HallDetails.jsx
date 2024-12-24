@@ -1,6 +1,6 @@
 
 
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -55,18 +55,27 @@ export default function HallDetails() {
     }
   }, [hallRecommend]);
 
-  const handleDeleteRecommendHall = async (recId) => {
-    try {
-      await dispatch(deleteRecommendHall(recId));
-      alert('התגובה נמחקה בהצלחה!');
-    } catch (error) {
-      console.error('שגיאה במחיקת התגובה:', error);
-      alert('אירעה שגיאה במחיקת התגובה');
-    }
-  };
+  // const handleDeleteRecommendHall = async (id) => {
+  //   try {
+  //     await dispatch(deleteRecommendHall(id));
+  //     alert('התגובה נמחקה בהצלחה!');
+  //   } catch (error) {
+  //     console.error('שגיאה במחיקת התגובה:', error);
+  //     alert('אירעה שגיאה במחיקת התגובה');
+  //   }
+  // };
+    const handleDeleteRecommendHall = async (id) => {
+      try {
+        await dispatch(deleteRecommendHall(id));
+        alert('אולם נמחק בהצלחה');
+      } catch (error) {
+        console.error('שגיאה במחיקת האולם', error);
+        alert('אירעה שגיאה במחיקת האולם');
+      }
+    };
 
   const handleAddRecommendation = () => {
-    if (reviewerName && reviewRating > 0 && reviewComment) {
+    if (reviewerName && reviewRating  && reviewComment) {
       const recommendation = {
         reviewerName,
         rating: reviewRating,
@@ -89,7 +98,7 @@ export default function HallDetails() {
   if (!selectedHall) return <Typography>לא נמצא זמר עם מזהה זה</Typography>;
 
   return (
-    <>
+    <Fragment>
       <Box
         sx={{
           display: 'flex',
@@ -306,7 +315,7 @@ export default function HallDetails() {
           />
         ))}
       </Box>
-    </>
+    </Fragment>
   );
 }
 
