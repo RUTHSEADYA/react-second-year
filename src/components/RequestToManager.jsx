@@ -97,17 +97,17 @@ export default function RequestToManager() {
                     <Typography
                       variant="h6"
                       gutterBottom
-                      sx={{ fontFamily: "Cursive", color: "black", textAlign: "center" }}
+                      sx={{ fontFamily: "Cursive", color: "black", textAlign: "right", direction: "rtl"}}
                     >
                       תאריך: {request.date}
                     </Typography>
-                    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black" }}>
+                    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black"  ,textAlign: "right", direction: "rtl"}}>
                       סוג הספק המבקש: {request.typeOfSupplier}
                     </Typography>
-                    <Typography variant="body2" sx={{ marginY: 1, color: "black" }}>
+                    <Typography variant="body2" sx={{ marginY: 1, color: "black", textAlign: "right", direction: "rtl" }}>
                       <strong>בקשה:</strong> {request.request}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: "black" }}>
+                    <Typography variant="body2" sx={{ color: "black" , textAlign: "right", direction: "rtl"}}>
                       <strong>אימייל:</strong> {request.email}
                     </Typography>
                     <Button
