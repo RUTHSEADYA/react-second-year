@@ -69,10 +69,10 @@ export default function Flowers() {
       alert('יש למלא את כל השדות ');
       return;
     }
-     // בדיקת תקינות מספר הטלפון
+    
      if (!phoneRegex.test(phone)) {
       alert('מספר טלפון לא תקין. יש להזין מספר תקין בפורמט ישראלי.');
-      return; // עצירת הפונקציה
+      return; 
     }
 
     const formData = new FormData();
@@ -110,10 +110,10 @@ export default function Flowers() {
       alert('יש למלא את כל השדות');
       return;
     }
-       // בדיקת תקינות מספר הטלפון
+     
        if (!phoneRegex.test(phone)) {
         alert('מספר טלפון לא תקין. יש להזין מספר תקין בפורמט ישראלי.');
-        return; // עצירת הפונקציה
+        return; 
       }
 
     const updatedFlower= { name, description,position, phone };
@@ -206,7 +206,7 @@ export default function Flowers() {
                     <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '2rem' }} />
                   </Typography>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    {user?.username === 'מנהל' && user?.password === '12' && (
+                    {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                       <>
                         <Button
                           variant="contained"
@@ -233,15 +233,15 @@ export default function Flowers() {
   size="small"
   onClick={() => handleViewDetails(flower.id)}
   sx={{
-    backgroundColor: ' #A8D5BA', // גוון תכלת עדין
-    borderColor: 'black', // גוון כחול כהה יותר
-    color: 'black', // טקסט בגוון כחול
-    borderRadius: '8px', // פינות מעוגלות
+    backgroundColor: ' #A8D5BA', 
+    borderColor: 'black',
+    color: 'black', 
+    borderRadius: '8px',
     transition: 'transform 0.2s ease, background-color 0.2s ease',
     '&:hover': {
-      backgroundColor: '#BBDEFB', // גוון כחול בעת ריחוף
-      transform: 'scale(1.1)', // הגדלה בעת ריחוף
-      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)', // צל בעת ריחוף
+      backgroundColor: '#BBDEFB', 
+      transform: 'scale(1.1)', 
+      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)', 
     },
   }}
 >
@@ -254,13 +254,13 @@ export default function Flowers() {
           );
         })}
       </Grid>
-      {user?.username === 'מנהל' && user?.password === '12' && (
+      {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
   <Box
     sx={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      height: '15vh', // גובה המסך המלא
+      height: '15vh', 
     }}
   >
     <Button
@@ -418,7 +418,7 @@ export default function Flowers() {
   variant="contained"
   onClick={handleUpdateFlower}
   sx={{
-    margin: ' 0 10px', // רווח בין הכפתורים
+    margin: ' 0 10px', 
 
     backgroundColor: '#000',
     color: '#fff',

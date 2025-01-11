@@ -62,16 +62,16 @@ export default function Producer() {
     navigate(`/producer/${id}/details`);
   };
 
-  const handleAddProducer= async () => {
-    if (!name || !description || !phone ) {
+  const handleAddProducer = async () => {
+    if (!name || !description || !phone) {
       alert('יש למלא את כל השדות ');
       return;
     }
 
-     // בדיקת תקינות מספר הטלפון
-     if (!phoneRegex.test(phone)) {
+
+    if (!phoneRegex.test(phone)) {
       alert('מספר טלפון לא תקין. יש להזין מספר תקין בפורמט ישראלי.');
-      return; // עצירת הפונקציה
+      return; 
     }
 
     const formData = new FormData();
@@ -106,13 +106,12 @@ export default function Producer() {
       alert('יש למלא את כל השדות');
       return;
     }
-       // בדיקת תקינות מספר הטלפון
-       if (!phoneRegex.test(phone)) {
-        alert('מספר טלפון לא תקין. יש להזין מספר תקין בפורמט ישראלי.');
-        return; // עצירת הפונקציה
-      }
+    if (!phoneRegex.test(phone)) {
+      alert('מספר טלפון לא תקין. יש להזין מספר תקין בפורמט ישראלי.');
+      return; 
+    }
 
-    const updatedProducer= { name, description, phone };
+    const updatedProducer = { name, description, phone };
     const formData = new FormData();
     formData.append('producer', JSON.stringify(updatedProducer));
     if (imageFile) {
@@ -146,7 +145,7 @@ export default function Producer() {
   if (loading) return <Typography>טוען...</Typography>;
   if (error) return <Typography color="error">שגיאה: {error}</Typography>;
   if (!Array.isArray(producers) || producers.length === 0) {
-     <Typography>אין מפיקים להצגה</Typography>;
+    <Typography>אין מפיקים להצגה</Typography>;
   }
 
   return (
@@ -194,12 +193,12 @@ export default function Producer() {
                   <Typography variant="body2" color="text.secondary" align="center">
                     {producer.description}
                   </Typography>
-                 
+
                   <Typography variant="body2" color="text.secondary" align="center" mt={2}>
                     <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '2rem' }} />
                   </Typography>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    {user?.username === 'מנהל' && user?.password === '12' && (
+                    {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                       <>
                         <Button
                           variant="contained"
@@ -219,26 +218,26 @@ export default function Producer() {
                         </Button>
                       </>
                     )}
-                   <Button
-  variant="outlined"
-  color="primary"
-  size="small"
-  onClick={() => handleViewDetails(producer.id)}
-  sx={{
-    backgroundColor: '#E3F2FD', // גוון תכלת עדין
-    borderColor: '#64B5F6', // גוון כחול כהה יותר
-    color: '#1976D2', // טקסט בגוון כחול
-    borderRadius: '8px', // פינות מעוגלות
-    transition: 'transform 0.2s ease, background-color 0.2s ease',
-    '&:hover': {
-      backgroundColor: '#BBDEFB', // גוון כחול בעת ריחוף
-      transform: 'scale(1.1)', // הגדלה בעת ריחוף
-      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)', // צל בעת ריחוף
-    },
-  }}
->
-  פרטים נוספים
-</Button>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      size="small"
+                      onClick={() => handleViewDetails(hall.id)}
+                      sx={{
+                        backgroundColor: '#E3F2FD',
+                        borderColor: '#64B5F6',
+                        color: '#1976D2',
+                        borderRadius: '8px',
+                        transition: 'transform 0.2s ease, background-color 0.2s ease',
+                        '&:hover': {
+                          backgroundColor: '#BBDEFB',
+                          transform: 'scale(1.1)',
+                          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+                        },
+                      }}
+                    >
+                      פרטים נוספים
+                    </Button>
                   </Box>
                 </CardContent>
               </Card>
@@ -247,33 +246,33 @@ export default function Producer() {
         })}
       </Grid>
 
-     
-           {user?.username === 'מנהל' && user?.password === '12' && (
-       <Box
-         sx={{
-           display: 'flex',
-           justifyContent: 'center',
-           alignItems: 'center',
-           height: '15vh', // גובה המסך המלא
-         }}
-       >
-         <Button
-           variant="contained"
-           sx={{
-            margin: '10px 0',
-            backgroundColor: 'black',
-            color: '#fff',
-            '&:hover': {
-              backgroundColor: '#333',
-            },
+
+      {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '15vh', // גובה המסך המלא
           }}
-           onClick={handleToggleForm}
-         >
-           {showForm ? 'בטל הוספת מפיק' : 'הוסף מפיק'}
-         </Button>
-       </Box>
-     )}
-     
+        >
+          <Button
+            variant="contained"
+            sx={{
+              margin: '10px 0',
+              backgroundColor: 'black',
+              color: '#fff',
+              '&:hover': {
+                backgroundColor: '#333',
+              },
+            }}
+            onClick={handleToggleForm}
+          >
+            {showForm ? 'בטל הוספת מפיק' : 'הוסף מפיק'}
+          </Button>
+        </Box>
+      )}
+
 
       {showForm && (
         <div>
@@ -323,18 +322,18 @@ export default function Producer() {
               onChange={(e) => setImageFile(e.target.files[0])}
             />
           </Button>
-          <Button variant="contained" 
-           sx={{
-            margin: '0 10px',
-            backgroundColor: 'black',
-            color: '#fff',
-            '&:hover': {
-              backgroundColor: '#333',
-            },
-          }}
-          onClick={handleAddProducer}
-         
-             >
+          <Button variant="contained"
+            sx={{
+              margin: '0 10px',
+              backgroundColor: 'black',
+              color: '#fff',
+              '&:hover': {
+                backgroundColor: '#333',
+              },
+            }}
+            onClick={handleAddProducer}
+
+          >
             שמור מפיק
           </Button>
         </div>
@@ -389,15 +388,15 @@ export default function Producer() {
             />
           </Button>
           <Button variant="contained"
-           sx={{
-            margin: '0 10px ',
-            backgroundColor: 'black',
-            color: '#fff',
-            '&:hover': {
-              backgroundColor: '#333',
-            },
-          }}
-           onClick={handleUpdateProduc}>
+            sx={{
+              margin: '0 10px ',
+              backgroundColor: 'black',
+              color: '#fff',
+              '&:hover': {
+                backgroundColor: '#333',
+              },
+            }}
+            onClick={handleUpdateProduc}>
             עדכן מפיק
           </Button>
         </div>

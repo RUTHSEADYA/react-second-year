@@ -21,7 +21,6 @@ export default function About() {
         textAlign: 'center',
       }}
     >
-      {/* כפתור ליצירת קשר בראש העמוד */}
       <Button
         onClick={scrollToContact}
         variant="contained"
@@ -37,7 +36,7 @@ export default function About() {
         צור קשר
       </Button>
 
-      {/* לוגו */}
+
       <Box
         sx={{
           mb: 5,
@@ -46,7 +45,7 @@ export default function About() {
         }}
       >
         <img
-          src="src/photo/קולולו (5).png" // עדכן לנתיב התמונה הנכון
+          src="src/photo/קולולו (5).png" 
           alt="לוגו האתר"
           style={{
             maxWidth: '150px',
@@ -56,7 +55,6 @@ export default function About() {
         />
       </Box>
 
-      {/* תוכן העמוד */}
       <Container
         sx={{
           backgroundColor: '#fff',
@@ -100,9 +98,9 @@ export default function About() {
   <div>
   <ul
     style={{
-      textAlign: 'right', // תצוגת הטקסט מימין
-      direction: 'rtl', // כדי לוודא שהנקודות מוצגות מימין
-      paddingRight: '20px', // מרווח מהצדדים
+      textAlign: 'right', 
+      direction: 'rtl', 
+      paddingRight: '20px', 
     }}
   >
     <li>
@@ -118,11 +116,11 @@ export default function About() {
     <li>ועוד הרבה הפתעות שוות מחכות לכם באתר! 🎊</li>
     </ul>
     </div>
-          {/* המשך המלל */}
+         
         </Typography>
       </Container>
 
-      {/* פרטי יצירת קשר */}
+      
       <Container
         id="contact-section"
         sx={{

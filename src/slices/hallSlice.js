@@ -23,15 +23,6 @@ export const getHalls = createAsyncThunk('halls/gethalls', async () => {
   }
 });
 
-// export const addHall = createAsyncThunk('halls/addFlowers', async (hall) => {
-//   try {
-//     const addData = await AddHall(hall);
-//     return addData;
-//   }
-//   catch (error) {
-//     throw new Error(error.message);
-//   }
-// });
 
 export const deleteHall = createAsyncThunk('halls/deletehalls', async (id) => {
   try {

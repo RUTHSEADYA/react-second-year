@@ -1,12 +1,20 @@
 import axios from "axios";
 
+const axiosInstance=axios.create({
+  withCredentials:true,
+})
+
 export async function GetPotographer() {
     try{
-    const response = await axios.get("http://localhost:8080/api/photographer/getPhotographers");
-    console.log("Data from server:", response.data); // בדיקת נתונים
+    const response = await axiosInstance.get("http://localhost:8080/api/photographer/getPhotographers");
+    console.log("Data from server:", response.data); 
     return response.data;}
     catch(error){
-        console.error("an arror occurred ",error);
+      if (error.response && error.response.status === 401) {
+        throw new Error("אינך מורשה לצפות בתכני האתר לפני שתתחבר");}
+    else {
+        throw new Error("An unexpected error occurred");
+    }
     }
   }
 
@@ -17,14 +25,13 @@ export async function GetPotographer() {
       formData.append('photographer', JSON.stringify(photographerData));
       if (imageFile) {
         formData.append('image', imageFile);
-    } // שולח את הנתונים כאובייקט JSON
-  
-      // בדוק את התוכן של FormData
+      }  
+     
       for (let pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
       }
   
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         "http://localhost:8080/api/photographer/upload",
         formData,
         {
@@ -51,7 +58,7 @@ export async function GetPotographer() {
           formData.append("image", imageFile);
         }
     
-        const response = await axios.put(
+        const response = await axiosInstance.put(
           `http://localhost:8080/api/photographer/updatePhotographer/${id}`,
           formData,
           {
@@ -71,7 +78,7 @@ export async function GetPotographer() {
   
     export async function DeletePotographer(id) {
         try{
-  const response=await axios.delete(`http://localhost:8080/api/photographer/deletePhotographer/${id}`);
+  const response=await axiosInstance.delete(`http://localhost:8080/api/photographer/deletePhotographer/${id}`);
   console.log("the stutus  data erom server :",response.status);
   return id;
         }catch(error){

@@ -2,9 +2,13 @@
 import axios from "axios";
 
 
+const axiosInstance=axios.create({
+  withCredentials:true,
+})
+
 export async function GetSingers() {
 try{
-    const response=await axios.get("http://localhost:8080/api/singers/getSingers");
+    const response=await axiosInstance.get("http://localhost:8080/api/singers/getSingers");
     console.log("the data from server ",response.data);
     console.log("the status data from server ",response.status);
 
@@ -12,31 +16,18 @@ try{
     return response.data;
 }
 catch(error){
-    console.error("an error occurred when you try to get the singers");
+  if (error.response && error.response.status === 401) {
+    throw new Error("אינך מורשה לצפות בתכני האתר לפני שתתחבר");}
+else {
+    throw new Error("An unexpected error occurred");
 }
-   
+}
 }
 
 
-// export async function AddSinger(singer) {
-//     console.log("add singer function called with ",singer)
-
-//     try{
-//         const response=await axios.post("http://localhost:8080/api/singers/addSinger",singer);
-
-//         console.log(" status data from server ",response.status)
-//         console.log("the data from server ",response.data);
-//         return response.data;
-//     }catch(error){
-//         console.error("an error occurred when you tryed to add singer");
-        
-//     }
-
-        
-//     }
     export async function DeleteSinger(id) {
         try{
-        const response=await axios.delete(`http://localhost:8080/api/singers/deleteSinger/${id}`);
+        const response=await axiosInstance.delete(`http://localhost:8080/api/singers/deleteSinger/${id}`);
         console.log("the status data from server",response.status)
         return id;
 
@@ -45,16 +36,6 @@ console.error("an error occurred when you tryed to delete singer",error)
     }
     }
 
-    // export async function UpdateSinger(singer,id) {
-    //   try{
-    //     const response=await axios.put(`http://localhost:8080/api/singers/updateSinger/${id}`,singer);
-    //      console.log("the response from server",response.data);
-    //      return { id, singer: response.data }; // החזרת המידע הנדרש
-    //     }catch(error){
-    //     console.error("an error occurred when you tryed to update singer",error);
-    //   }
-      
-    // }
 
     export async function UpdateSinger(singerData, imageFile, id) {
       try {
@@ -64,7 +45,7 @@ console.error("an error occurred when you tryed to delete singer",error)
           formData.append("image", imageFile);
         }
     
-        const response = await axios.put(
+        const response = await axiosInstance.put(
           `http://localhost:8080/api/singers/updateSinger/${id}`,
           formData,
           {
@@ -82,26 +63,12 @@ console.error("an error occurred when you tryed to delete singer",error)
     }
     
 
-    // export async function FilterSingers(name) {
-    //     try {
-    //       // הוספת פרמטר name ל-URL (למשל: ?name=...)
-    //       const response = await axios.get(`http://localhost:8080/api/singers/searchSingers`, {
-    //         params: { name }
-    //       });
-      
-    //       console.log("the status data from server", response.status);
-    //       return response.data;
-    //     } catch (error) {
-    //         console.error("an error occurred when you tryed to filter singer",error)
-
-    //       throw new Error(error.message);
-    //     }
+   
 
         export async function FilterSingers(name) {
        
-            //if (name == name.trim()); // הסרת רווחים מיותרים
             try{
-            const response=await axios.get("http://localhost:8080/api/singers/searchSingers",name);
+            const response=await axiosInstance.get("http://localhost:8080/api/singers/searchSingers",name);
             if(response.data.length===0||response.status===204){
               return {message:"לא נמצאו תוצאות"}
             }
@@ -118,15 +85,13 @@ console.error("an error occurred when you tryed to delete singer",error)
         try {
           const formData = new FormData();
           formData.append('singer', JSON.stringify(singerData)); 
-          if(imageFile)// שולח את הנתונים כאובייקט JSON
-          formData.append('image', imageFile); // מוסיף את קובץ התמונה
-      
-          // בדוק את התוכן של FormData
+          if(imageFile)
+          formData.append('image', imageFile);
           for (let pair of formData.entries()) {
             console.log(pair[0] + ', ' + pair[1]);
           }
       
-          const response = await axios.post(
+          const response = await axiosInstance.post(
             "http://localhost:8080/api/singers/upload",
             formData,
             {

@@ -1,16 +1,21 @@
 import axios from "axios";
 
 
+const axiosInstance=axios.create({
+  withCredentials:true,
+})
+
+
   export async function GetRecommendHalls(hallId) {
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       `http://localhost:8080/api/hall/recommendations/getRecommendations/${hallId}`
     );
-    console.log("Recommendations from server:", response.data); // הדפסת הנתונים מהשרת
+    console.log("Recommendations from server:", response.data);
     return response.data;
   }
 
   export async function AddRecommendHall(hallId, recommend) {
-    const response = await axios.post(
+    const response = await axiosInstance.post(
       `http://localhost:8080/api/hall/recommendations/addRecommendation/${hallId}`,
       recommend
     );
@@ -19,7 +24,7 @@ import axios from "axios";
   }
   
   export async function DeleteRecommendHall(id) {
-    const response=await axios.delete(`http://localhost:8080/api/hall/recommendations/deleteRecommendation/${id}`)
+    const response=await axiosInstance.delete(`http://localhost:8080/api/hall/recommendations/deleteRecommendation/${id}`)
     console.log("Recommendations from server:", response.data);
     return id;
       

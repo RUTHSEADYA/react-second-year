@@ -114,36 +114,35 @@ export default function FlowerDetails() {
             alignItems: 'center',
             justifyContent: 'center',
             textAlign: 'center',
-            //background: 'linear-gradient(90deg, #fbd7a2, #ff7f56)',
             background: 'linear-gradient(90deg, #C6F6D5, #A8D5BA)',
 
             borderRadius: 2,
             padding: 2,
             width: '90%',
-            position: 'relative', // מאפשר למקם את התמונה בצורה מדויקת
+            position: 'relative', 
           }}
 
         >
 
           <Avatar
 
-            src={selectedFlower?.imageUrl || 'src/photo/קולולו (5).png'} // נתיב לתמונת ברירת מחדל
+            src={selectedFlower?.imageUrl || 'src/photo/קולולו (5).png'} 
             alt={selectedFlower?.name}
             sx={{
-              width: 200, // גודל גדול יותר
+              width: 200, 
               height: 200,
-              position: 'absolute', // מאפשר להזיז את התמונה למיקום מותאם
-              top: '20%', // מיקום ורטיקלי יחסי
-              left: '10%', // מיקום אופקי יחסי
+              position: 'absolute', 
+              top: '20%', 
+              left: '10%', 
               boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-              border: '3px solid white', // תיחום לתמונה
+              border: '3px solid white', 
             }}
           />
 
 
 
 
-          <Box sx={{ marginLeft: '200px' }}> {/* הסטת התוכן מימין לתמונה */}
+          <Box sx={{ marginLeft: '200px' }}>
             <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
               {selectedFlower.name}
             </Typography>
@@ -158,7 +157,6 @@ export default function FlowerDetails() {
         </Box>
 
 
-        {/* דירוג */}
         <Box display="flex" alignItems="center" mt={4}>
           <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '3rem' }} />
           <Typography
@@ -175,7 +173,6 @@ export default function FlowerDetails() {
           </Typography>
         </Box>
 
-        {/* תגובות */}
         <Typography variant="h5" sx={{ marginTop: 3, color: 'black' }}>
           תגובות:
         </Typography>
@@ -205,7 +202,7 @@ export default function FlowerDetails() {
                 <strong>תאריך:</strong> {recommendation.date}
               </Typography>
               <Divider sx={{ marginTop: 1 }} />
-              {user?.username === 'מנהל' && user?.password === '12' && (
+              {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                 <Button size="small" color="error" onClick={() => handleDeleteRecommendFlower(recommendation.id)}>
                   מחק
                 </Button>
@@ -233,7 +230,6 @@ export default function FlowerDetails() {
         </Button>
       </Box>
 
-      {/* דיאלוג הוספת תגובה */}
       <Dialog open={openReviewModal} onClose={() => setOpenReviewModal(false)} fullWidth maxWidth="sm">
         <DialogTitle>הוסף תגובה</DialogTitle>
         <DialogContent>
@@ -270,7 +266,6 @@ export default function FlowerDetails() {
         </DialogActions>
       </Dialog>
 
-      {/* גלריה */}
       <Typography variant="h5" sx={{ marginTop: 5, color: 'black' }}></Typography>
       <Box
         sx={{

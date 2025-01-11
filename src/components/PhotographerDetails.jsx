@@ -49,7 +49,7 @@ export default function PhotographerDetails() {
   const selectedPhotographer = photographers.find((photographer) => photographer.id === parseInt(id));
   const photographerRecommend = recommendations?.[id] || [];
   const user = useSelector((state) => state.user.currentUser);
-  
+
   useEffect(() => {
     if (photographerRecommend.length > 0) {
       const totalRating = photographerRecommend.reduce((sum, rec) => sum + rec.rating, 0);
@@ -110,60 +110,59 @@ export default function PhotographerDetails() {
           },
         }}
       >
-        {/* פרטי הזמר עם תמונת סטטוס */}
         <Box
-  sx={{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    //background: 'linear-gradient(90deg, #ECE4F0, #D7CDE5)'
-    background: 'linear-gradient(90deg, #E3F2FD, #BBDEFB, #90CAF9, #42A5F5)',
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            background: 'linear-gradient(90deg, #E3F2FD, #BBDEFB, #90CAF9, #42A5F5)',
 
 
 
-    borderRadius: 2,
-    padding: 2,
-    width: '90%',
-    position: 'relative', // מאפשר למקם את התמונה בצורה מדויקת
-  }}
-  
->
+            borderRadius: 2,
+            padding: 2,
+            width: '90%',
+            position: 'relative',
+          }}
 
-  <Avatar
-  
-    src={selectedPhotographer?.imageUrl || '/src/photo/blog-8.jpg'} // נתיב לתמונת ברירת מחדל
-    // alt={selectedHall?.name}
-    sx={{
-      width: 200, // גודל גדול יותר
-      height: 200,
-      position: 'absolute', // מאפשר להזיז את התמונה למיקום מותאם
-      top: '20%', // מיקום ורטיקלי יחסי
-      left: '10%', // מיקום אופקי יחסי
-      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-      border: '3px solid white', // תיחום לתמונה
-    }}
-  /> 
+        >
 
 
+          <Avatar
+
+            src={selectedCatering?.imageUrl || 'src/photo/קולולו (5).png'}
+            alt={selectedCatering?.name}
+            sx={{
+              width: 200,
+              height: 200,
+              position: 'absolute',
+              top: '20%',
+              left: '10%',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+              border: '3px solid white',
+            }}
+          />
 
 
-  <Box sx={{ marginLeft: '200px' }}> {/* הסטת התוכן מימין לתמונה */}
-    <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
-      {selectedPhotographer.name}
-    </Typography>
-    <Typography variant="h5" sx={{ marginTop: 1, color: '#fff8e1' }}>
-      {selectedPhotographer.description}
-    </Typography>
-    <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>
-     מיקום: {selectedPhotographer.position}
-    </Typography>
-    <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>{selectedPhotographer.phone}</Typography>
-  </Box>
-</Box>
 
 
-        {/* דירוג */}
+
+          <Box sx={{ marginLeft: '200px' }}> 
+            <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
+              {selectedPhotographer.name}
+            </Typography>
+            <Typography variant="h5" sx={{ marginTop: 1, color: '#fff8e1' }}>
+              {selectedPhotographer.description}
+            </Typography>
+            <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>
+              מיקום: {selectedPhotographer.position}
+            </Typography>
+            <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>{selectedPhotographer.phone}</Typography>
+          </Box>
+        </Box>
+
+
         <Box display="flex" alignItems="center" mt={4}>
           <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '3rem' }} />
           <Typography
@@ -180,7 +179,6 @@ export default function PhotographerDetails() {
           </Typography>
         </Box>
 
-        {/* תגובות */}
         <Typography variant="h5" sx={{ marginTop: 3, color: 'black' }}>
           תגובות:
         </Typography>
@@ -210,7 +208,7 @@ export default function PhotographerDetails() {
                 <strong>תאריך:</strong> {recommendation.date}
               </Typography>
               <Divider sx={{ marginTop: 1 }} />
-              {user?.username === 'מנהל' && user?.password === '12' && (
+              {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                 <Button size="small" color="error" onClick={() => handleDeleteRecommendPhotographer(recommendation.id)}>
                   מחק
                 </Button>
@@ -238,7 +236,7 @@ export default function PhotographerDetails() {
         </Button>
       </Box>
 
-      {/* דיאלוג הוספת תגובה */}
+
       <Dialog open={openReviewModal} onClose={() => setOpenReviewModal(false)} fullWidth maxWidth="sm">
         <DialogTitle>הוסף תגובה</DialogTitle>
         <DialogContent>

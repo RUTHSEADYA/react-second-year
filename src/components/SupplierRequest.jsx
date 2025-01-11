@@ -74,7 +74,7 @@ export default function SupplierRequest() {
     }
     if (!emailRegex.test(mail)) {
       alert('אימייל לא תקין');
-      return; // עצירת הפונקציה
+      return; 
     }
     if (
       requestText.trim() === "" ||

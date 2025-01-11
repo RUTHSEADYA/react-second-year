@@ -1,76 +1,70 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Box, Button, Avatar, IconButton } from '@mui/material';
-import UserProfile from './UserProfile'; // קומפוננטה להצגת פרופיל המשתמש
+import { AppBar, Toolbar, Box, Button, IconButton } from '@mui/material';
+import UserProfile from './UserProfile'; 
 
 const Navbar = () => {
-  const user = useSelector((state) => state.user.currentUser); // שליפת המשתמש הנוכחי מ-Redux
+  const user = useSelector((state) => state.user.currentUser); 
 
   return (
     <AppBar
       position="static"
       sx={{
-        backgroundColor: 'black', // צבע רקע שחור
-        color: 'gold', // צבע טקסט זהב
+        backgroundColor: 'black',
+        color: 'gold',
         width: '100vw',
-        margin: 0, // ביטול שוליים חיצוניים
-       // padding: "4px", // ריווח פנימי קטן
-        //minHeight: '72px',
+        margin: 0, 
+     
       }}
     >
       <Toolbar
         sx={{
-          display: 'flex',
-           // שימוש ב-Flexbox לסידור האלמנטים
-          flexDirection: { xs: 'column', sm: 'row' }, // תצוגה אנכית במסכים קטנים ואופקית בגדולים
-          justifyContent: 'space-between', // פיזור אלמנטים בין קצוות
-          alignItems: 'center', // יישור אנכי של האלמנטים
-          width: '100%', // שימוש בכל הרוחב
-          padding: '0 16px', // ריווח פנימי אופקי בתוך ה-Toolbar
+          display: 'flex',  
+          flexDirection: { xs: 'column', sm: 'row' }, 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          width: '100%', 
+          padding: '0 16px', 
           minHeight: '64px',
           overflowX: 'hidden', 
-          // מניעת גלילה אופקית
+         
 
 
         }}
       >
-        {/* לוגו */}
         <Box
           component="img"
-          src="/src/photo/קולולו (4).gif" // נתיב לתמונה של הלוגו
+          src="/src/photo/קולולו (4).gif" 
           alt="לוגו"
           sx={{
             maxWidth: '100%', 
-            height: { xs: '50px', sm: '60px' }, // גובה מותאם למסכים קטנים וגדולים
-            marginBottom: { xs: '10px', sm: '0' }, // ריווח תחתון במסכים קטנים בלבד
+            height: { xs: '50px', sm: '60px' }, 
+            marginBottom: { xs: '10px', sm: '0' },
           }}
         />
 
-        {/* כפתורים ופרופיל משתמש */}
         <Box
           sx={{
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: { xs: 'center', sm: 'flex-end' }, 
             gap: '20px', 
-            width: '100%', // זה חשוב כדי שהפרופיל יתפוס את כל הרוחב
+            width: '100%', 
           }}
         
         
         >
-          {/* תנאי להצגת כפתור בקשות למנהל */}
-          {user?.username === 'מנהל' && user?.password === '12' && (
+          {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
             <Button component={Link} to="/reqeustToManager" sx={buttonStyle}>
               בקשות למנהל
             </Button>
           )}
 
-          {/* כפתורים נוספים */}
           <Button component={Link} to="/weddingService" sx={buttonStyle}>
             שירותים מיוחדים לחתן ולכלה
           </Button>
-          {(user?.userType === 'SUPPLIER' || (user?.username === 'מנהל' && user?.password === '12')) && (
+          {(user?.userType === 'SUPPLIER' || (user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS')) && (
             <Button component={Link} to="/supplierRequest" sx={buttonStyle}>
               פרסום באתר
             </Button>
@@ -100,23 +94,22 @@ const Navbar = () => {
             אודותינו
           </Button>
 
-          {/* כפתור התחברות למשתמשים שאינם מחוברים */}
           {!user && (
             <Button
               component={Link}
               to="/signInAndSignUp"
               sx={{
-                ...buttonStyle, // שימוש בסגנון הכפתורים הרגיל
-                backgroundColor: 'black', // רקע שחור לכפתור
-                padding: '8px 16px', // ריווח פנימי
-                border: '2px solid gold', // מסגרת זהב
-                borderRadius: '8px', // עיגול פינות
-                fontWeight: 'bold', // טקסט מודגש
-                fontSize: '16px', // גודל טקסט
+                ...buttonStyle, 
+                backgroundColor: 'black', 
+                padding: '8px 16px', 
+                border: '2px solid gold', 
+                borderRadius: '8px', 
+                fontWeight: 'bold', 
+                fontSize: '16px', 
                 '&:hover': {
-                  backgroundColor: 'gold', // רקע זהב במעבר עכבר
-                  color: 'black', // טקסט שחור במעבר עכבר
-                  borderColor: 'black', // מסגרת שחורה במעבר עכבר
+                  backgroundColor: 'gold', 
+                  color: 'black', 
+                  borderColor: 'black', 
                 },
               }}
             >
@@ -124,7 +117,6 @@ const Navbar = () => {
             </Button>
           )}
 
-          {/* פרופיל משתמש */}
           <UserProfile />
         </Box>
       </Toolbar>
@@ -132,11 +124,11 @@ const Navbar = () => {
   );
 };
 
-// סגנון הכפתורים הכללי
+
 const buttonStyle = {
-  color: 'gold', // צבע טקסט זהב
+  color: 'gold', 
   '&:hover': {
-    color: 'white', // טקסט לבן במעבר עכבר
+    color: 'white', 
   },
 };
 

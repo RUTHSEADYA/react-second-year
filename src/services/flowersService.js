@@ -1,27 +1,28 @@
 import axios from "axios";
 
+const axiosInstance=axios.create({
+  withCredentials:true,
+})
+
 export async function GetFlowers() {
-    const response = await axios.get("http://localhost:8080/api/flowers/getFlowers");
-    console.log("Data from server:", response.data); // בדיקת נתונים
+  try{
+    const response = await axiosInstance.get("http://localhost:8080/api/flowers/getFlowers");
+    console.log("Data from server:", response.data); 
     return response.data;
   }
+  catch(error){
+    if (error.response && error.response.status === 401) {
+      throw new Error("אינך מורשה לצפות בתכני האתר לפני שתתחבר");}
+  else {
+      throw new Error("An unexpected error occurred");
+  }
+  }
+  }
 
-  // export async function AddFlower(flower) {
-  //         console.log("add flower function called with ",flower)
-
-  //   try{
-
-  //   const response=await axios.post("http://localhost:8080/api/flowers/addFlower",flower);
-  //   console.log("status data from server",response.status)
-  //   console.log(response.data)
-  //   return response.data;}
-  //   catch(error){
-  //     console.log("an error occurred");
-  //   }
-  // }
+  
     export async function DeleteFlower(id) {
       try{
-const response=await axios.delete(`http://localhost:8080/api/flowers/deleteFlower/${id}`);
+const response=await axiosInstance.delete(`http://localhost:8080/api/flowers/deleteFlower/${id}`);
 console.log("the stutus  data erom server :",response.status);
 return id;
       }catch(error){
@@ -30,17 +31,7 @@ return id;
       }
       
     }
-    // export async function UpdateFlower(flower,id) {
-    //   try{
-    //   const response=await axios.put(`http://localhost:8080/api/flowers/updateFlower/${id}`,flower);
-    //   console.log("thedata feom server ",response.data);
-    //   return response.data;
-    //   }catch(error){
-    //     console.error("the update error ",error)
-    //     throw error;
-    //   }
-      
-    // }
+    
     
 
     
@@ -52,7 +43,7 @@ return id;
           formData.append("image", imageFile);
         }
     
-        const response = await axios.put(
+        const response = await axiosInstance.put(
           `http://localhost:8080/api/flowers/updateFlowers/${id}`,
           formData,
           {
@@ -72,10 +63,10 @@ return id;
     export async function FilterFlowers({name,position}) {
       const params={};
  
-      if (name) params.name = name.trim(); // הסרת רווחים מיותרים
+      if (name) params.name = name.trim(); 
       if (position) params.position = position.trim();
       try{
-      const response=await axios.get("http://localhost:8080/api/flowers/searchFlower",{params});
+      const response=await axiosInstance.get("http://localhost:8080/api/flowers/searchFlower",{params});
       if(response.data.length===0||response.status===204){
         return {message:"לא נמצאו תוצאות"}
       }
@@ -93,14 +84,12 @@ return id;
         const formData = new FormData();
         formData.append('flower', JSON.stringify(flowerData));
         if(imageFile)
-        formData.append('image', imageFile); // מוסיף את קובץ התמונה
-    
-        // בדוק את התוכן של FormData
+        formData.append('image', imageFile); 
         for (let pair of formData.entries()) {
           console.log(pair[0] + ', ' + pair[1]);
         }
     
-        const response = await axios.post(
+        const response = await axiosInstance.post(
           "http://localhost:8080/api/flowers/upload",
           formData,
           {

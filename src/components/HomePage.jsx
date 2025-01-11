@@ -16,7 +16,6 @@ const FullScreenVideo = () => {
 
   return (
     <Box sx={{ position: "relative", height: "100vh", overflow: "hidden" }}>
-      {/* לוגו למעלה במרכז */}
       <Box
         sx={{
           position: "absolute",
@@ -37,7 +36,6 @@ const FullScreenVideo = () => {
         />
       </Box>
 
-      {/* וידאו על כל המסך */}
       <video
         autoPlay
         loop
@@ -56,7 +54,6 @@ const FullScreenVideo = () => {
         הדפדפן שלך אינו תומך בוידאו.
       </video>
 
-      {/* שורת סטטוסים של ספקים */}
       <Box
         sx={{
           position: "absolute",

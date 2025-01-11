@@ -1,6 +1,6 @@
 body, html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* מניעת גלילה אופקית */
-  width: 100%; /* הבטחת התאמה מלאה לרוחב המסך */
+  overflow-x: hidden; 
+  width: 100%; 
 }

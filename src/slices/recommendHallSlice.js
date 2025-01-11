@@ -61,7 +61,6 @@ const hallRecommendationsSlice = createSlice({
       builder
       .addCase(getRecommendHalls.fulfilled, (state, action) => {
         const { hallId, recommendations } = action.payload;
-        //console.log("Saving recommendations in Redux:", { hallId, recommendations }); // הדפסה לבדיקה
         state.recommendations[hallId] = recommendations;
         state.loading = false;
       })
@@ -93,10 +92,7 @@ const hallRecommendationsSlice = createSlice({
       .addCase(deleteRecommendHall.pending, (state) => {
         state.loading = true;
       })
-      // .addCase(deleteRecommendHall.fulfilled, (state, action) => {
-      //   state.recommendations = state.recommendations.filter(recommend => recommend.id !== action.payload); 
-      //          state.loading = false;
-      // })
+   
       .addCase(deleteRecommendHall.fulfilled, (state, action) => {
         state.recommendations = state.recommendations.filter(
           (recommendation) => recommendation.id !== action.payload

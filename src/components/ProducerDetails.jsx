@@ -45,7 +45,7 @@ export default function ProducerDetails() {
   const selectedProducer = producers.find((producer) => producer.id === parseInt(id));
   const producerRecommend = recommendations?.[id] || [];
   const user = useSelector((state) => state.user.currentUser);
-  
+
   useEffect(() => {
     if (producerRecommend.length > 0) {
       const totalRating = producerRecommend.reduce((sum, rec) => sum + rec.rating, 0);
@@ -106,70 +106,56 @@ export default function ProducerDetails() {
           },
         }}
       >
-        {/* פרטי הזמר עם תמונת סטטוס */}
+       
         <Box
-  sx={{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    background: 'linear-gradient(90deg, #F7F7F7, #E0E0E0, #BDBDBD, #757575)',
-    borderRadius: 2,
-    padding: 2,
-    width: '90%',
-    position: 'relative', // מאפשר למקם את התמונה בצורה מדויקת
-  }}
-  
->
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            background: 'linear-gradient(90deg, #F7F7F7, #E0E0E0, #BDBDBD, #757575)',
+            borderRadius: 2,
+            padding: 2,
+            width: '90%',
+            position: 'relative',
+          }}
 
-  <Avatar
-  
-    src={selectedProducer?.imageUrl || 'src/photo/קולולו (5).png'} // נתיב לתמונת ברירת מחדל
-    alt={selectedProducer?.name}
-    sx={{
-      width: 200, // גודל גדול יותר
-      height: 200,
-      position: 'absolute', // מאפשר להזיז את התמונה למיקום מותאם
-      top: '20%', // מיקום ורטיקלי יחסי
-      left: '10%', // מיקום אופקי יחסי
-      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-      border: '3px solid white', // תיחום לתמונה
-    }}
-  />
+        >
 
-{/* <Box
-  sx={{
-    width: 200,
-    height: 200,
-    img: selectedSinger?.imageUrl ? `url(${selectedSinger.imageUrl})` : `url('src/photo/blog-8.jpg')`,
-    backgroundSize: 'contain',
-    backgroundPosition: 'center',
-    borderRadius: '50%',
-    position: 'absolute',
-    top: '20%',
-    left: '10%',
-    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-    border: '3px solid white',
-  }} */}
-{/* /> */}
+          <Avatar
+
+            src={selectedCatering?.imageUrl || 'src/photo/קולולו (5).png'}
+            alt={selectedCatering?.name}
+            sx={{
+              width: 200,
+              height: 200,
+              position: 'absolute',
+              top: '20%',
+              left: '10%',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+              border: '3px solid white',
+            }}
+          />
 
 
-  <Box sx={{ marginLeft: '200px' }}> {/* הסטת התוכן מימין לתמונה */}
-    <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
-      {selectedProducer.name}
-    </Typography>
-    <Typography variant="h5" sx={{ marginTop: 1, color: '#fff8e1' }}>
-      {selectedProducer.description}
-    </Typography>
-    <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>
-      איזור פעילות: כל הארץ {selectedProducer.position}
-    </Typography>
-    <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>{selectedProducer.phone}</Typography>
-  </Box>
-</Box>
 
 
-        {/* דירוג */}
+
+          <Box sx={{ marginLeft: '200px' }}> 
+            <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
+              {selectedProducer.name}
+            </Typography>
+            <Typography variant="h5" sx={{ marginTop: 1, color: '#fff8e1' }}>
+              {selectedProducer.description}
+            </Typography>
+            <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>
+              איזור פעילות: כל הארץ {selectedProducer.position}
+            </Typography>
+            <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>{selectedProducer.phone}</Typography>
+          </Box>
+        </Box>
+
+
         <Box display="flex" alignItems="center" mt={4}>
           <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '3rem' }} />
           <Typography
@@ -186,7 +172,6 @@ export default function ProducerDetails() {
           </Typography>
         </Box>
 
-        {/* תגובות */}
         <Typography variant="h5" sx={{ marginTop: 3, color: 'black' }}>
           תגובות:
         </Typography>
@@ -216,7 +201,7 @@ export default function ProducerDetails() {
                 <strong>תאריך:</strong> {recommendation.date}
               </Typography>
               <Divider sx={{ marginTop: 1 }} />
-              {user?.username === 'מנהל' && user?.password === '12' && (
+              {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                 <Button size="small" color="error" onClick={() => handleDeleteRecommendProducers(recommendation.id)}>
                   מחק
                 </Button>
@@ -244,7 +229,6 @@ export default function ProducerDetails() {
         </Button>
       </Box>
 
-      {/* דיאלוג הוספת תגובה */}
       <Dialog open={openReviewModal} onClose={() => setOpenReviewModal(false)} fullWidth maxWidth="sm">
         <DialogTitle>הוסף תגובה</DialogTitle>
         <DialogContent>

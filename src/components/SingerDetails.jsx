@@ -45,7 +45,7 @@ export default function SingerDetails() {
   const selectedSinger = singers.find((singer) => singer.id === parseInt(id));
   const singerRecommend = recommendations?.[id] || [];
   const user = useSelector((state) => state.user.currentUser);
-  
+
   useEffect(() => {
     if (singerRecommend.length > 0) {
       const totalRating = singerRecommend.reduce((sum, rec) => sum + rec.rating, 0);
@@ -106,52 +106,52 @@ export default function SingerDetails() {
           },
         }}
       >
-        {/* פרטי הזמר עם תמונת סטטוס */}
         <Box
-  sx={{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    background: 'linear-gradient(90deg, #fbd7a2, #ff7f56)',
-    borderRadius: 2,
-    padding: 2,
-    width: '90%',
-    position: 'relative', // מאפשר למקם את התמונה בצורה מדויקת
-  }}
-  
->
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            background: 'linear-gradient(90deg, #fbd7a2, #ff7f56)',
+            borderRadius: 2,
+            padding: 2,
+            width: '90%',
+            position: 'relative', 
+          }}
 
-  <Avatar
-  
-    src={selectedSinger?.imageUrl || 'src/photo/קולולו (5).png'} // נתיב לתמונת ברירת מחדל
-    alt={selectedSinger?.name}
-    sx={{
-      width: 200, // גודל גדול יותר
-      height: 200,
-      position: 'absolute', // מאפשר להזיז את התמונה למיקום מותאם
-      top: '20%', // מיקום ורטיקלי יחסי
-      left: '10%', // מיקום אופקי יחסי
-      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-      border: '3px solid white', // תיחום לתמונה
-    }}
-  />
+        >
+
+          <Avatar
+
+            src={selectedCatering?.imageUrl || 'src/photo/קולולו (5).png'}
+            alt={selectedCatering?.name}
+            sx={{
+              width: 200,
+              height: 200,
+              position: 'absolute',
+              top: '20%',
+              left: '10%',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+              border: '3px solid white',
+            }}
+          />
 
 
 
-  <Box sx={{ marginLeft: '200px' }}> {/* הסטת התוכן מימין לתמונה */}
-    <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
-      {selectedSinger.name}
-    </Typography>
-    <Typography variant="h5" sx={{ marginTop: 1, color: '#fff8e1' }}>
-      {selectedSinger.description}
-    </Typography>
-    <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>
-      איזור פעילות: כל הארץ {selectedSinger.position}
-    </Typography>
-    <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>{selectedSinger.phone}</Typography>
-  </Box>
-</Box>
+
+          <Box sx={{ marginLeft: '200px' }}> 
+            <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
+              {selectedSinger.name}
+            </Typography>
+            <Typography variant="h5" sx={{ marginTop: 1, color: '#fff8e1' }}>
+              {selectedSinger.description}
+            </Typography>
+            <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>
+              איזור פעילות: כל הארץ {selectedSinger.position}
+            </Typography>
+            <Typography sx={{ marginTop: 1, color: '#fff8e1' }}>{selectedSinger.phone}</Typography>
+          </Box>
+        </Box>
 
 
         {/* דירוג */}
@@ -201,7 +201,7 @@ export default function SingerDetails() {
                 <strong>תאריך:</strong> {recommendation.date}
               </Typography>
               <Divider sx={{ marginTop: 1 }} />
-              {user?.username === 'מנהל' && user?.password === '12' && (
+              {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                 <Button size="small" color="error" onClick={() => handleDeleteRecommendSinger(recommendation.id)}>
                   מחק
                 </Button>
@@ -229,7 +229,6 @@ export default function SingerDetails() {
         </Button>
       </Box>
 
-      {/* דיאלוג הוספת תגובה */}
       <Dialog open={openReviewModal} onClose={() => setOpenReviewModal(false)} fullWidth maxWidth="sm">
         <DialogTitle>הוסף תגובה</DialogTitle>
         <DialogContent>

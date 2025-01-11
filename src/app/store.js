@@ -1,10 +1,8 @@
 
 
-import { configureStore } from '@reduxjs/toolkit';//הפונקציה הזו היא חלק מהרידקס טולקיטס ומגדירה את 
-//Middleware הסטור בצורה נוחה ופשוטה במקום להגדיר אותו עם באופן ידני ולהוסיף כלים כמו 
+import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '../slices/userSlice';
-import flowerReducer from '../slices/flowersSlice'; // ייבוא נכון של ה-reducer
-//import flowerRecommendationsReducer from '../slices/recommandFlowerSlice'
+import flowerReducer from '../slices/flowersSlice'; 
 import recommandFlowerReducer from '../slices/recommandFlowerSlice';
 import requestToManagerReducer from '../slices/requestToManagerSlice';
 import producersReducer from '../slices/producerSlice'
@@ -21,8 +19,7 @@ import cateringRecommendationsReducer from '../slices/recommendCateringSlice'
 
 const store = configureStore({
   reducer: {
-    //user-שם הסלייס
-    //userReducer- השם שהגדרנו שיטפל במצבי המשתמש בסלייס
+  
     user: userReducer,
     flowers: flowerReducer,
     flowerRecommendations: recommandFlowerReducer,
@@ -42,5 +39,5 @@ const store = configureStore({
   },
 });
 
-export  default store; // ייצוא של store
+export  default store; 
 

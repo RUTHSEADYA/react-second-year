@@ -5,7 +5,7 @@ import { useState } from "react";
 import {  useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Menu, MenuItem, IconButton, Avatar, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from "@mui/material";
-import { logout, updateUser } from "../slices/userSlice";
+import { logout, updateUser, signOutUser } from "../slices/userSlice";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const UserProfile = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const [position, setPosition] = useState(null);
-  const [openDialog, setOpenDialog] = useState(false); // לדיאלוג של עדכון פרופיל
+  const [openDialog, setOpenDialog] = useState(false);
   const [updatedUser, setUpdatedUser] = useState(currentUser || {});
 
   const open = Boolean(position);
@@ -26,15 +26,23 @@ const UserProfile = () => {
     setPosition(null);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("currentUser");
-    dispatch(logout());
-    navigate("/");
+
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem("currentUser");
+      await dispatch(signOutUser()); 
+      dispatch(logout());
+      navigate("/");
+    } catch (error) {
+      console.error("Failed to log out", error);
+    }
   };
+  
+
 
   const handleDialogOpen = () => {
     setOpenDialog(true);
-    handleMenuClose(); // סוגר את תפריט הפרופיל
+    handleMenuClose(); 
   };
 
   const handleDialogClose = () => {
@@ -51,7 +59,6 @@ const handleUpdateProfile = () => {
             alert("פרופיל עודכן בהצלחה")
             localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 
-      // עדכון ה-state של המשתמש
       setUpdatedUser(updatedUser);
 
       handleDialogClose();
@@ -73,14 +80,13 @@ const handleUpdateProfile = () => {
   <Avatar
     sx={{
       bgcolor: "#DAA520",
-      width: 40,  // גודל אחיד
+      width: 40,  
       height: 40,
-      objectFit: "cover", // התמונה לא נחתכת
-      borderRadius: "50%", // עיגול מושלם
+      objectFit: "cover", 
+      borderRadius: "50%", 
       marginRight:"170%",
  
-      overflow: 'visible', // וודא שהוא לא נחתך
-      // גודל אחיד
+      overflow: 'visible', 
     }}
   >              {currentUser.username[0].toUpperCase()}
             </Avatar>
@@ -93,7 +99,7 @@ const handleUpdateProfile = () => {
     sx: { mt: 1, borderRadius: 2,
       overflow: 'visible',
       minWidth: 200,
-      maxHeight: '400px',  // הגבלת גובה אם יש יותר מדי פריטים בתפריט
+      maxHeight: '400px',  
       overflowY: 'auto',
       display: 'flex', 
     alignItems: 'center', 
@@ -102,7 +108,7 @@ const handleUpdateProfile = () => {
     width: '8%',
      
 
-     }, // ביטול רווח מוגזם בראש ה-Menu
+     }, 
   }}
  >
 
@@ -113,7 +119,6 @@ const handleUpdateProfile = () => {
             <MenuItem onClick={handleLogout}>התנתק</MenuItem>
           </Menu>
 
-          {/* דיאלוג לעדכון פרופיל */}
           <Dialog open={openDialog} onClose={handleDialogClose}>
             <DialogTitle>עדכון פרופיל</DialogTitle>
             <DialogContent>

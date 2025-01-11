@@ -73,8 +73,8 @@ const SignInAndSignUp = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  const [isSignUp, setIsSignUp] = useState(false); // מצב לניהול התחברות/הרשמה
-  const [isSupplier, setIsSupplier] = useState(false); // מצב לבדיקת הרשמת ספק
+  const [isSignUp, setIsSignUp] = useState(false); 
+  const [isSupplier, setIsSupplier] = useState(false); 
   const loading = useSelector((state) => state.user.loading);
   const error = useSelector((state) => state.user.error);
   const [open, setOpen] = useState(true);
@@ -88,19 +88,18 @@ const SignInAndSignUp = () => {
   const handleSignUp = async () => {
     if (!validateEmail(email)) {
       setEmailError("כתובת אימייל אינה תקינה");
-      return; // עצור את תהליך ההרשמה
+      return; 
     }
   
-    setEmailError(""); // איפוס הודעת השגיאה אם הכל תקין
-  
+    setEmailError(""); 
     try {
       const payload = {
         username,
         password,
         email,
-        userType: isSupplier ? "SUPPLIER" : "CUSTOMER", // וידוא סוג משתמש
+        userType: isSupplier ? "SUPPLIER" : "CUSTOMER", 
       };
-      console.log("Payload sent:", payload); // הדפסה לאימות
+      console.log("Payload sent:", payload); 
       const result = await dispatch(registerUser(payload));
       if (result.payload) {
         setOpen(false);
@@ -176,7 +175,7 @@ const SignInAndSignUp = () => {
   value={email}
   onChange={(e) => {
     setEmail(e.target.value);
-    setEmailError(""); // איפוס שגיאה כאשר המשתמש מקליד
+    setEmailError(""); 
   }}
   type="email"
   fullWidth
@@ -188,8 +187,8 @@ const SignInAndSignUp = () => {
       </InputAdornment>
     ),
   }}
-  error={!!emailError} // שדה אדום במקרה של שגיאה
-  helperText={emailError} // הודעת שגיאה
+  error={!!emailError} 
+  helperText={emailError} 
 />
 
               

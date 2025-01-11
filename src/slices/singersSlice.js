@@ -124,7 +124,7 @@ state.loading=false;
   state.loading = true;
 })
 .addCase(updateSinger.fulfilled, (state, action) => {
-  const { id, singer } = action.payload; // חילוץ ID ואובייקט הזמר מהתוצאה
+  const { id, singer } = action.payload; 
   state.singers = state.singers.map((s) =>
     s.id === id ? singer : s
   );
@@ -140,7 +140,7 @@ state.loading=false;
     state.loading = true;
   })
   .addCase(filterSingers.fulfilled, (state, action) => {
-    state.filteredSingers = action.payload; // עדכון מצב לאחר סינון
+    state.filteredSingers = action.payload; 
     state.loading = false;
     state.error = null;
   })

@@ -111,7 +111,7 @@ const cateringSlice = createSlice({
         state.loading = true;
       })
       .addCase(updateCatering.fulfilled, (state, action) => {
-        const { id, catering } = action.payload; // ודא ששם השדה תואם לנתונים המוחזרים
+        const { id, catering } = action.payload;
         state.catering = state.catering.map((c) =>
           c.id === id ? catering : c
         );

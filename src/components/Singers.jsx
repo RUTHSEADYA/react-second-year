@@ -65,10 +65,10 @@ export default function Singers() {
       return;
     }
 
-    // בדיקת תקינות מספר הטלפון
+    
     if (!phoneRegex.test(phone)) {
       alert('מספר טלפון לא תקין. יש להזין מספר תקין בפורמט ישראלי.');
-      return; // עצירת הפונקציה
+      return; 
     }
 
     const formData = new FormData();
@@ -103,10 +103,10 @@ export default function Singers() {
       alert('יש למלא את כל השדות');
       return;
     }
-    // בדיקת תקינות מספר הטלפון
+    
     if (!phoneRegex.test(phone)) {
       alert('מספר טלפון לא תקין. יש להזין מספר תקין בפורמט ישראלי.');
-      return; // עצירת הפונקציה
+      return; 
     }
 
     const updatedSinger = { name, description, phone };
@@ -196,7 +196,7 @@ export default function Singers() {
                     <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '2rem' }} />
                   </Typography>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    {user?.username === 'מנהל' && user?.password === '12' && (
+                    {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                       <>
                         <Button
                           variant="contained"
@@ -220,17 +220,17 @@ export default function Singers() {
                       variant="outlined"
                       color="primary"
                       size="small"
-                      onClick={() => handleViewDetails(singer.id)}
+                      onClick={() => handleViewDetails(hall.id)}
                       sx={{
-                        backgroundColor: '#E3F2FD', // גוון תכלת עדין
-                        borderColor: '#64B5F6', // גוון כחול כהה יותר
-                        color: '#1976D2', // טקסט בגוון כחול
-                        borderRadius: '8px', // פינות מעוגלות
+                        backgroundColor: '#E3F2FD',
+                        borderColor: '#64B5F6',
+                        color: '#1976D2',
+                        borderRadius: '8px',
                         transition: 'transform 0.2s ease, background-color 0.2s ease',
                         '&:hover': {
-                          backgroundColor: '#BBDEFB', // גוון כחול בעת ריחוף
-                          transform: 'scale(1.1)', // הגדלה בעת ריחוף
-                          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)', // צל בעת ריחוף
+                          backgroundColor: '#BBDEFB',
+                          transform: 'scale(1.1)',
+                          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
                         },
                       }}
                     >
@@ -244,13 +244,13 @@ export default function Singers() {
         })}
       </Grid>
 
-      {user?.username === 'מנהל' && user?.password === '12' && (
+      {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '15vh', // גובה המסך המלא
+            height: '15vh', 
           }}
         >
           <Button

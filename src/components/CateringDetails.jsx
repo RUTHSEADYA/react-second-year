@@ -106,7 +106,6 @@ export default function CateringDetails() {
           },
         }}
       >
-        {/* פרטי הזמר עם תמונת סטטוס */}
         <Box
           sx={{
             display: 'flex',
@@ -118,30 +117,30 @@ export default function CateringDetails() {
             borderRadius: 2,
             padding: 2,
             width: '90%',
-            position: 'relative', // מאפשר למקם את התמונה בצורה מדויקת
+            position: 'relative', 
           }}
 
         >
 
           <Avatar
 
-            src={selectedCatering?.imageUrl || 'src/photo/קולולו (5).png'} // נתיב לתמונת ברירת מחדל
+            src={selectedCatering?.imageUrl || 'src/photo/קולולו (5).png'} 
             alt={selectedCatering?.name}
             sx={{
-              width: 200, // גודל גדול יותר
+              width: 200, 
               height: 200,
-              position: 'absolute', // מאפשר להזיז את התמונה למיקום מותאם
-              top: '20%', // מיקום ורטיקלי יחסי
-              left: '10%', // מיקום אופקי יחסי
+              position: 'absolute', 
+              top: '20%', 
+              left: '10%', 
               boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-              border: '3px solid white', // תיחום לתמונה
+              border: '3px solid white', 
             }}
           />
 
 
 
 
-          <Box sx={{ marginLeft: '200px' }}> {/* הסטת התוכן מימין לתמונה */}
+          <Box sx={{ marginLeft: '200px' }}> 
             <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
               {selectedCatering.name}
             </Typography>
@@ -207,7 +206,7 @@ export default function CateringDetails() {
                 <strong>תאריך:</strong> {recommendation.date}
               </Typography>
               <Divider sx={{ marginTop: 1 }} />
-              {user?.username === 'מנהל' && user?.password === '12' && (
+              {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                 <Button size="small" color="error" onClick={() => handleDeleteRecommendCatering(recommendation.id)}>
                   מחק
                 </Button>

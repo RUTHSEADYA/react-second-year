@@ -19,14 +19,7 @@ throw new Error(error.message) ;   }
 
 })
 
-// export const addProducer=createAsyncThunk("producer/addProducer",async(producer)=>{
-//     try{
-//    const addData=await AddProducer(producer);
-//    return addData;
-//     }catch(error){
-//         throw new Error(error.message);
-//     }
-// })
+
 
 export const deleteProducer=createAsyncThunk("producer/deleteProducer",async(id)=>{
     try{
@@ -106,7 +99,7 @@ state.loading=false;
     state.loading = true;
   })
   .addCase(updateProducer.fulfilled, (state, action) => {
-    const { id, producer } = action.payload; // חילוץ ID ואובייקט הזמר מהתוצאה
+    const { id, producer } = action.payload; 
     state.producers = state.producers.map((p) =>
       p.id === id ? producer : p
     );

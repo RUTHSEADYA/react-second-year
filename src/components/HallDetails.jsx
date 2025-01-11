@@ -55,24 +55,15 @@ export default function HallDetails() {
     }
   }, [hallRecommend]);
 
-  // const handleDeleteRecommendHall = async (id) => {
-  //   try {
-  //     await dispatch(deleteRecommendHall(id));
-  //     alert('התגובה נמחקה בהצלחה!');
-  //   } catch (error) {
-  //     console.error('שגיאה במחיקת התגובה:', error);
-  //     alert('אירעה שגיאה במחיקת התגובה');
-  //   }
-  // };
-    const handleDeleteRecommendHall = async (id) => {
-      try {
-        await dispatch(deleteRecommendHall(id));
-        alert('אולם נמחק בהצלחה');
-      } catch (error) {
-        console.error('שגיאה במחיקת האולם', error);
-        alert('אירעה שגיאה במחיקת האולם');
-      }
-    };
+  const handleDeleteRecommendHall = async (recId) => {
+    try {
+      await dispatch(deleteRecommendHall(recId));
+      alert('התגובה נמחקה בהצלחה!');
+    } catch (error) {
+      console.error('שגיאה במחיקת התגובה:', error);
+      alert('אירעה שגיאה במחיקת התגובה');
+    }
+  };
 
   const handleAddRecommendation = () => {
     if (reviewerName && reviewRating  && reviewComment) {
@@ -116,14 +107,12 @@ export default function HallDetails() {
           },
         }}
       >
-        {/* פרטי הזמר עם תמונת סטטוס */}
         <Box
   sx={{
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    //background: 'linear-gradient(90deg, #ECE4F0, #D7CDE5)'
     background: 'linear-gradient(90deg, #ECE4F0, #D7CDE5, #C3A3CC, #9B77AE)',
 
 
@@ -132,30 +121,28 @@ export default function HallDetails() {
     borderRadius: 2,
     padding: 2,
     width: '90%',
-    position: 'relative', // מאפשר למקם את התמונה בצורה מדויקת
+    position: 'relative', 
   }}
   
 >
 
   <Avatar
   
-    src={selectedHall?.imageUrl || '/src/photo/blog-8.jpg'} // נתיב לתמונת ברירת מחדל
-    // alt={selectedHall?.name}
+    src={selectedHall?.imageUrl || '/src/photo/blog-8.jpg'} 
     sx={{
-      width: 200, // גודל גדול יותר
+      width: 200, 
       height: 200,
-      position: 'absolute', // מאפשר להזיז את התמונה למיקום מותאם
-      top: '20%', // מיקום ורטיקלי יחסי
-      left: '10%', // מיקום אופקי יחסי
+      position: 'absolute', 
+      left: '10%', 
       boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-      border: '3px solid white', // תיחום לתמונה
+      border: '3px solid white', 
     }}
   /> 
 
 
 
 
-  <Box sx={{ marginLeft: '200px' }}> {/* הסטת התוכן מימין לתמונה */}
+  <Box sx={{ marginLeft: '200px' }}> 
     <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#fff' }}>
       {selectedHall.name}
     </Typography>
@@ -170,7 +157,6 @@ export default function HallDetails() {
 </Box>
 
 
-        {/* דירוג */}
         <Box display="flex" alignItems="center" mt={4}>
           <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '3rem' }} />
           <Typography
@@ -187,7 +173,7 @@ export default function HallDetails() {
           </Typography>
         </Box>
 
-        {/* תגובות */}
+        
         <Typography variant="h5" sx={{ marginTop: 3, color: 'black' }}>
           תגובות:
         </Typography>
@@ -217,7 +203,7 @@ export default function HallDetails() {
                 <strong>תאריך:</strong> {recommendation.date}
               </Typography>
               <Divider sx={{ marginTop: 1 }} />
-              {user?.username === 'מנהל' && user?.password === '12' && (
+              {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
                 <Button size="small" color="error" onClick={() => handleDeleteRecommendHall(recommendation.id)}>
                   מחק
                 </Button>

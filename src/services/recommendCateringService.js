@@ -1,12 +1,16 @@
 import axios from "axios";
 
+const axiosInstance=axios.create({
+  withCredentials:true,
+})
+
 
   export async function GetRecommendCatring(cateringId) {
     try{
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       `http://localhost:8080/api/catering/recommendations/getRecommendations/${cateringId}`
     );
-    console.log("Recommendations from server:", response.data); // הדפסת הנתונים מהשרת
+    console.log("Recommendations from server:", response.data); 
     return response.data;}
     catch(error){
       console.error("erorrr",error);
@@ -15,7 +19,7 @@ import axios from "axios";
 
 
 export async function AddRecommendCatering(cateringId, recommend) {
-  const response = await axios.post(
+  const response = await axiosInstance.post(
     `http://localhost:8080/api/catering/recommendations/addRecommendation/${cateringId}`,
     recommend
   );
@@ -24,7 +28,7 @@ export async function AddRecommendCatering(cateringId, recommend) {
 }
 
 export async function DeleteRecommendCatering(id) {
-const response=await axios.delete(`http://localhost:8080/api/catering/recommendations/deleteRecommendation/${id}`)
+const response=await axiosInstance.delete(`http://localhost:8080/api/catering/recommendations/deleteRecommendation/${id}`)
 console.log("Recommendations from server:", response.data);
 return id;
   

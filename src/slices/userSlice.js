@@ -1,20 +1,14 @@
-// src/slices/userSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { signUpUser,SigninUser, UpdateUser } from "../services/userService"; 
+import { signUpUser,SigninUser, UpdateUser, SignOutUser } from "../services/userService"; 
 
-//מגדיר את המצב ההתחלתי של המתמש כרגע
-//currentUser - מאחסן בתוכו את נתוני המתמש העכשווי
-//loading- אם ישנה פעולה שנטענת-מתבצעת כרגע 
-//והודעת שגיאה במידה שיש  
+
 const initialState = {
     currentUser: {},
     loading: false,
     error: ""
 };
 
-// userData הפונקציה הזו קוראת לשרת ומחירה את התוצאה שהתקבלה ממנו לתוך 
-//  שהיא מבצעת את הקריאות לשרת signUpUser בתוכה היא קוראת ל
-//registerUser-  createAsyncThunk המזהה של הפעולה 
+
 export const registerUser = createAsyncThunk("user/registerUser", async (user) => {
     const userData = await signUpUser(user);  
     return userData;
@@ -28,9 +22,9 @@ export const LoginUser=createAsyncThunk("user/LoginUser",async(user)=>{
 export const loadUserFromStorage = createAsyncThunk("user/loadUserFromStorage", async () => {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
-        return JSON.parse(storedUser);//ממירים כי הפונקציה לוקלסטורג מקבלת רק מחרוזת והמשתמש מגיע כאובייקט
+        return JSON.parse(storedUser);
     }
-    return null; // אם אין משתמש שמור
+    return null; 
 });
 export const updateUser=createAsyncThunk("user/updateuser",async({ id, user })=>{
     try{
@@ -41,33 +35,38 @@ export const updateUser=createAsyncThunk("user/updateuser",async({ id, user })=>
         
     }
 })
+export const signOutUser = createAsyncThunk("user/signOutUser", async () => {
+    try {
+        const logoutData=await SignOutUser();
+        return logoutData;
+    } catch (error) {
+        console.error("An error occurred during signout:", error);
+        throw error;
+    }
+});
+
 
 const userSlice = createSlice({
-    name: "user",//השם של הסלייס משתמש לזיוי הסלייס והפעולות שלובתוך הסטור
+    name: "user",
   initialState,
     reducers: {
         logout: (state) => {
             state.currentUser = null;
-    },//ריק , כי מגדיר פעולות סינכרוניות ואנו השתמשנו באסינכרוניות
     },
-    //builder זה החלק שבו מנהלים את האסינכרוניות בעזרת
+    },
+ 
     extraReducers: (builder) => {
         builder
-        //pending-  מתחילהA PI מופעל כשקריאה ל
-        // לסמל שמידע נטען true לכן מאותחל ל
+       
             .addCase(registerUser.pending, (state) => {
                 state.loading = true;
             })
 
-            //fulfilled- הצליחה API מופעלת כשהקריאה ל-
-            // action.payload באמצעות currentUser המידע נשמר ב
-            // false מוחזר ל loading ה
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.currentUser = action.payload;
                 state.loading = false;
             })
-            //rejected -נכשלת API מופעלת כשהקריאה ל
-            //הודעת השגיאה נשמרת ב-error (באמצעות action.error.message).
+           
             .addCase(registerUser.rejected, (state, action) => {
                 state.error = action.error.message;
                 state.loading = false;
@@ -83,21 +82,14 @@ const userSlice = createSlice({
             })
             
               
-            // .addCase(LoginUser.rejected,(state,action)=>{
-            //     if(action.error == 404){
-            //         state.error=action.error;
-            //     }
-            //     state.error=action.error.message;
-            //     state.loading=false;
-
-            // })
+  
             .addCase(LoginUser.rejected, (state, action) => {
           
                     state.error = action.error.message || "Unknown error";
                 
                 state.loading = false;
             })
-                // פעולה לטעינת משתמש מ-localStorage
+               
         .addCase(loadUserFromStorage.fulfilled, (state, action) => {
             if (action.payload) {
                 state.currentUser = action.payload;
@@ -121,6 +113,17 @@ const userSlice = createSlice({
                 state.error = action.error.message;
                 state.loading = false;
               })
+              .addCase(signOutUser.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(signOutUser.fulfilled, (state) => {
+                state.currentUser = null;
+                state.loading = false;
+            })
+            .addCase(signOutUser.rejected, (state, action) => {
+                state.error = action.error.message;
+                state.loading = false;
+            });
 
             
            

@@ -137,7 +137,6 @@ export default function RequestToManager() {
         )}
       </Container>
 
-      {/* Confirmation Dialog */}
       <Dialog open={openConfirmDialog} onClose={handleCloseDialog}>
         <DialogTitle>אישור מחיקת בקשה</DialogTitle>
         <DialogContent>
