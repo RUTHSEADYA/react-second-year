@@ -6,7 +6,7 @@ const axiosInstance=axios.create({
 
 export async function GetHalls() {
   try{
-    const response = await axiosInstance.get("http://localhost:8080/api/hall/getHalls");
+    const response = await axios.get("http://localhost:8080/api/hall/getHalls");
     console.log("Data from server:", response.data); 
     return response.data;
   }
@@ -22,7 +22,7 @@ export async function GetHalls() {
   
     export async function DeleteHall(id) {
       try{
-const response=await axiosInstance.delete(`http://localhost:8080/api/hall/deleteHall/${id}`);
+const response=await axios.delete(`http://localhost:8080/api/hall/deleteHall/${id}`);
 console.log("the stutus  data erom server :",response.status);
 return id;
       }catch(error){
@@ -40,7 +40,7 @@ return id;
           formData.append("image", imageFile);
         }
     
-        const response = await axiosInstance.put(
+        const response = await axios.put(
           `http://localhost:8080/api/hall/updateHall/${id}`,
           formData,
           {
@@ -68,7 +68,7 @@ return id;
         console.log('Sending hall data:', JSON.parse(formData.get('hall')));
         console.log('Image file:', formData.get('image'));
     
-        const response = await axiosInstance.post(
+        const response = await axios.post(
           "http://localhost:8080/api/hall/upload",
           formData,
           {

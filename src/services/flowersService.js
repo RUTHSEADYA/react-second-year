@@ -6,7 +6,7 @@ const axiosInstance=axios.create({
 
 export async function GetFlowers() {
   try{
-    const response = await axiosInstance.get("http://localhost:8080/api/flowers/getFlowers");
+    const response = await axios.get("http://localhost:8080/api/flowers/getFlowers");
     console.log("Data from server:", response.data); 
     return response.data;
   }
@@ -22,7 +22,7 @@ export async function GetFlowers() {
   
     export async function DeleteFlower(id) {
       try{
-const response=await axiosInstance.delete(`http://localhost:8080/api/flowers/deleteFlower/${id}`);
+const response=await axios.delete(`http://localhost:8080/api/flowers/deleteFlower/${id}`);
 console.log("the stutus  data erom server :",response.status);
 return id;
       }catch(error){
@@ -43,7 +43,7 @@ return id;
           formData.append("image", imageFile);
         }
     
-        const response = await axiosInstance.put(
+        const response = await axios.put(
           `http://localhost:8080/api/flowers/updateFlowers/${id}`,
           formData,
           {
@@ -66,7 +66,7 @@ return id;
       if (name) params.name = name.trim(); 
       if (position) params.position = position.trim();
       try{
-      const response=await axiosInstance.get("http://localhost:8080/api/flowers/searchFlower",{params});
+      const response=await axios.get("http://localhost:8080/api/flowers/searchFlower",{params});
       if(response.data.length===0||response.status===204){
         return {message:"לא נמצאו תוצאות"}
       }
@@ -89,7 +89,7 @@ return id;
           console.log(pair[0] + ', ' + pair[1]);
         }
     
-        const response = await axiosInstance.post(
+        const response = await axios.post(
           "http://localhost:8080/api/flowers/upload",
           formData,
           {

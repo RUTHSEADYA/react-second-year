@@ -9,7 +9,7 @@ const axiosInstance=axios.create({
 export async function GetProducers() {
 try{
 
-    const response=await axiosInstance.get("http://localhost:8080/api/producer/getProducers");
+    const response=await axios.get("http://localhost:8080/api/producer/getProducers");
     console.log("the data from server ",response.data);
     console.log("the status data from server ",response.status);
     return response.data;
@@ -29,7 +29,7 @@ catch(error){
     
     export async function DeleteProducer(id) {
         try{
-        const response=await axiosInstance.delete(`http://localhost:8080/api/producer/deleteProducer/${id}`);
+        const response=await axios.delete(`http://localhost:8080/api/producer/deleteProducer/${id}`);
         console.log("the status data from server",response.status)
         return id;
 
@@ -49,7 +49,7 @@ console.error("an error occurred when you tryed to delete producer")
             formData.append("image", imageFile);
           }
       
-          const response = await axiosInstance.put(
+          const response = await axios.put(
             `http://localhost:8080/api/producer/updateProducer/${id}`,
             formData,
             {
@@ -78,7 +78,7 @@ export async function AddProducer(producerData, imageFile) {
         console.log(pair[0] + ', ' + pair[1]);
       }
   
-      const response = await axiosInstance.post(
+      const response = await axios.post(
         "http://localhost:8080/api/producer/upload",
         formData,
         {

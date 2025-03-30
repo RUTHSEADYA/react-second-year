@@ -208,7 +208,7 @@ export default function Halls() {
                     <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '2rem' }} />
                   </Typography>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
+                    {user?.username === 'מנהל' && user?.password === '12' && (
                       <>
                         <Button
                           variant="contained"
@@ -256,7 +256,7 @@ export default function Halls() {
         })}
       </Grid>
 
-      {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
+      {user?.username === 'מנהל' && user?.password === '12' && (
         <Box
           sx={{
             display: 'flex',

@@ -124,8 +124,8 @@ export default function ProducerDetails() {
 
           <Avatar
 
-            src={selectedCatering?.imageUrl || 'src/photo/קולולו (5).png'}
-            alt={selectedCatering?.name}
+            src={selectedProducer?.imageUrl || 'src/photo/קולולו (5).png'}
+            alt={selectedProducer?.name}
             sx={{
               width: 200,
               height: 200,
@@ -201,7 +201,7 @@ export default function ProducerDetails() {
                 <strong>תאריך:</strong> {recommendation.date}
               </Typography>
               <Divider sx={{ marginTop: 1 }} />
-              {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
+              {user?.username === 'מנהל' && user?.password === '12' && (
                 <Button size="small" color="error" onClick={() => handleDeleteRecommendProducers(recommendation.id)}>
                   מחק
                 </Button>

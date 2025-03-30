@@ -7,7 +7,7 @@ const axiosInstance=axios.create({
 
 
   export async function GetRecommendHalls(hallId) {
-    const response = await axiosInstance.get(
+    const response = await axios.get(
       `http://localhost:8080/api/hall/recommendations/getRecommendations/${hallId}`
     );
     console.log("Recommendations from server:", response.data);
@@ -15,7 +15,7 @@ const axiosInstance=axios.create({
   }
 
   export async function AddRecommendHall(hallId, recommend) {
-    const response = await axiosInstance.post(
+    const response = await axios.post(
       `http://localhost:8080/api/hall/recommendations/addRecommendation/${hallId}`,
       recommend
     );
@@ -24,7 +24,7 @@ const axiosInstance=axios.create({
   }
   
   export async function DeleteRecommendHall(id) {
-    const response=await axiosInstance.delete(`http://localhost:8080/api/hall/recommendations/deleteRecommendation/${id}`)
+    const response=await axios.delete(`http://localhost:8080/api/hall/recommendations/deleteRecommendation/${id}`)
     console.log("Recommendations from server:", response.data);
     return id;
       

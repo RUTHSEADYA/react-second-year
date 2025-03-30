@@ -2,13 +2,15 @@
 
 import axios from "axios";
 
-const axiosInstance=axios.create({
-    withCredentials:true,
-  })
+// const axiosInstance=axios.create({
+//     withCredentials:true,
+//   })
 
 export async function AddRequest(request){
     try{
-    const response=await axiosInstance.post("http://localhost:8080/api/requests/addRequest",request);
+    const response=await axios
+    
+    .post("http://localhost:8080/api/requests/addRequest",request);
     console.log("the data from server",response.data);
     return response.data;
     }catch(error){

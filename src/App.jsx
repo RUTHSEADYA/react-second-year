@@ -83,7 +83,7 @@ const App = () => {
           width: '100%',
         }}
       >
-        <Typography variant="body2">© כל הזכויות שמורות - A&R</Typography>
+        <Typography variant="body2">© כל הזכויות שמורות - RS</Typography>
       </Box>
     </BrowserRouter>
   );

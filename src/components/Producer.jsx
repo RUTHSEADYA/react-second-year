@@ -25,7 +25,6 @@ export default function Producer() {
   const { producers, loading, error } = useSelector((state) => state.producers);
   const { recommendations } = useSelector((state) => state.producerRecommend);
   const user = useSelector((state) => state.user.currentUser);
-
   const [showForm, setShowForm] = useState(false);
   const [showForm2, setShowForm2] = useState(false);
   const [name, setName] = useState('');
@@ -198,7 +197,7 @@ export default function Producer() {
                     <Rating value={averageRating} readOnly precision={0.5} sx={{ fontSize: '2rem' }} />
                   </Typography>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
+                    {user?.username === 'מנהל' && user?.password === '12' && (
                       <>
                         <Button
                           variant="contained"
@@ -222,7 +221,7 @@ export default function Producer() {
                       variant="outlined"
                       color="primary"
                       size="small"
-                      onClick={() => handleViewDetails(hall.id)}
+                      onClick={() => handleViewDetails(producer.id)}
                       sx={{
                         backgroundColor: '#E3F2FD',
                         borderColor: '#64B5F6',
@@ -247,7 +246,7 @@ export default function Producer() {
       </Grid>
 
 
-      {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
+      {user?.username === 'מנהל' && user?.password === '12' && (
         <Box
           sx={{
             display: 'flex',

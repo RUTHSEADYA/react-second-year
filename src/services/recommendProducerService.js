@@ -7,7 +7,7 @@ const axiosInstance=axios.create({
 
 export async function GetProducerRecommend(producerId) {
     try{
-    const response = await axiosInstance.get(
+    const response = await axios.get(
       `http://localhost:8080/api/producerRecommend/getRecommendations/${producerId}`
     );
     console.log("Recommendations from server:", response.data);
@@ -19,7 +19,7 @@ export async function GetProducerRecommend(producerId) {
 }
 
 export async function AddRecommendProducer(producerId, recommend) {
-  const response = await axiosInstance.post(
+  const response = await axios.post(
     `http://localhost:8080/api/producerRecommend/addRecommendadion/${producerId}`,
     recommend
   );
@@ -29,7 +29,7 @@ export async function AddRecommendProducer(producerId, recommend) {
 
 export async function DeleteRecommendProducer(id) {
   try{
-  const response=await axiosInstance.delete(`http://localhost:8080/api/producerRecommend/deleteRecommend/${id}`)
+  const response=await axios.delete(`http://localhost:8080/api/producerRecommend/deleteRecommend/${id}`)
   console.log("Recommendations from server:", response.data);
   return id;}
   catch(error){

@@ -55,7 +55,7 @@ const Navbar = () => {
         
         
         >
-          {user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS' && (
+          {user?.username === 'מנהל' && user?.password === '12' && (
             <Button component={Link} to="/reqeustToManager" sx={buttonStyle}>
               בקשות למנהל
             </Button>
@@ -64,7 +64,7 @@ const Navbar = () => {
           <Button component={Link} to="/weddingService" sx={buttonStyle}>
             שירותים מיוחדים לחתן ולכלה
           </Button>
-          {(user?.userType === 'SUPPLIER' || (user?.username === 'מנהל' && user?.password === '$2a$08$KGp/4eTLFE9fv/8g37OZ4e2UNSffuSX0y/KgG64B8RFZcWu5NMcfS')) && (
+          {(user?.userType === 'SUPPLIER' || (user?.username === 'מנהל' && user?.password === '12')) && (
             <Button component={Link} to="/supplierRequest" sx={buttonStyle}>
               פרסום באתר
             </Button>

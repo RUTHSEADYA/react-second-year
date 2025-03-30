@@ -5,7 +5,7 @@ const axiosInstance=axios.create({
 })
 
   export async function GetRecommendFlowers(flowerId) {
-    const response = await axiosInstance.get(
+    const response = await axios.get(
       `http://localhost:8080/api/flowers/recommendations/getRecommendations/${flowerId}`
     );
     console.log("Recommendations from server:", response.data); // הדפסת הנתונים מהשרת
@@ -14,7 +14,7 @@ const axiosInstance=axios.create({
 
 
 export async function AddRecommendFlowers(flowerId, recommend) {
-  const response = await axiosInstance.post(
+  const response = await axios.post(
     `http://localhost:8080/api/flowers/recommendations/addRecommendation/${flowerId}`,
     recommend
   );
@@ -23,7 +23,7 @@ export async function AddRecommendFlowers(flowerId, recommend) {
 }
 
 export async function DeleteRecommendFlower(id) {
-const response=await axiosInstance.delete(`http://localhost:8080/api/flowers/recommendations/deleteRecommendation/${id}`)
+const response=await axios.delete(`http://localhost:8080/api/flowers/recommendations/deleteRecommendation/${id}`)
 console.log("Recommendations from server:", response.data);
 return id;
   

@@ -2,13 +2,13 @@
 import axios from "axios";
 
 
-const axiosInstance=axios.create({
-  withCredentials:true,
-})
+// const axiosInstance=axios.create({
+//   withCredentials:true,
+// })
 
 export async function GetSingers() {
 try{
-    const response=await axiosInstance.get("http://localhost:8080/api/singers/getSingers");
+    const response=await axios.get("http://localhost:8080/api/singers/getSingers");
     console.log("the data from server ",response.data);
     console.log("the status data from server ",response.status);
 
@@ -27,7 +27,7 @@ else {
 
     export async function DeleteSinger(id) {
         try{
-        const response=await axiosInstance.delete(`http://localhost:8080/api/singers/deleteSinger/${id}`);
+        const response=await axios.delete(`http://localhost:8080/api/singers/deleteSinger/${id}`);
         console.log("the status data from server",response.status)
         return id;
 
@@ -45,7 +45,7 @@ console.error("an error occurred when you tryed to delete singer",error)
           formData.append("image", imageFile);
         }
     
-        const response = await axiosInstance.put(
+        const response = await axios.put(
           `http://localhost:8080/api/singers/updateSinger/${id}`,
           formData,
           {
@@ -68,7 +68,7 @@ console.error("an error occurred when you tryed to delete singer",error)
         export async function FilterSingers(name) {
        
             try{
-            const response=await axiosInstance.get("http://localhost:8080/api/singers/searchSingers",name);
+            const response=await axios.get("http://localhost:8080/api/singers/searchSingers",name);
             if(response.data.length===0||response.status===204){
               return {message:"לא נמצאו תוצאות"}
             }
@@ -91,7 +91,7 @@ console.error("an error occurred when you tryed to delete singer",error)
             console.log(pair[0] + ', ' + pair[1]);
           }
       
-          const response = await axiosInstance.post(
+          const response = await axios.post(
             "http://localhost:8080/api/singers/upload",
             formData,
             {

@@ -7,7 +7,7 @@ const axiosInstance=axios.create({
 
 export async function GetCatering() {
   try{
-    const response = await axiosInstance.get("http://localhost:8080/api/catering/getCatering");
+    const response = await axios.get("http://localhost:8080/api/catering/getCatering");
     console.log("Data from server:", response.data);
     return response.data;
   }
@@ -23,7 +23,7 @@ export async function GetCatering() {
 
     export async function DeleteCatering(id) {
       try{
-const response=await axiosInstance.delete(`http://localhost:8080/api/catering/deleteCatering/${id}`);
+const response=await axios.delete(`http://localhost:8080/api/catering/deleteCatering/${id}`);
 console.log("the status  data erom server :",response.status);
 return id;
       }catch(error){
@@ -44,7 +44,7 @@ return id;
           formData.append("image", imageFile);
         }
     
-        const response = await axiosInstance.put(
+        const response = await axios.put(
           `http://localhost:8080/api/catering/updateCatering/${id}`,
           formData,
           {
@@ -76,7 +76,7 @@ return id;
           console.log(pair[0] + ', ' + pair[1]);
         }
     
-        const response = await axiosInstance.post(
+        const response = await axios.post(
           "http://localhost:8080/api/catering/upload",
           formData,
           {
